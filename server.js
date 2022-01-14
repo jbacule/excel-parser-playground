@@ -54,7 +54,7 @@ app.post('/api/upload', uploadFileToServer.single('file'), async (req, res) => {
     await cleanFiles([req.file.path])
     res.json(result)
   } catch (error) {
-    res.status(error.status || 500).json({ status: 'Error', message: error.message } || 'Internal Server Error')
+    res.status(error.status || 500).json({ message: error.message } || 'Internal Server Error')
   }
 })
 

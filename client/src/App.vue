@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from './api';
 import { ref, onMounted } from 'vue'
 
 // import Prism Editor
@@ -70,14 +70,16 @@ export default {
     const reset = async () => {
       document.getElementById('file').value = []
       result.value = '';
-      let response = await axios.get('/api/load-default');
+      let response = await api.get('/api/load-default');
       code.value = response.data.code
+      error_message.value = ''
     }
 
     const loadSample = async () => {
       result.value = '';
-      let response = await axios.get('/api/load-sample');
+      let response = await api.get('/api/load-sample');
       code.value = response.data.code
+      error_message.value = ''
       await navigate(response.data.file, true)
     }
 
@@ -93,11 +95,10 @@ export default {
         formData.append('file', file.value)
         formData.append('code', code.value)
         
-        let response = await axios.post('/api/upload', formData)
+        let response = await api.post('/api/upload', formData)
         result.value = response.data
       } catch (error) {
-        console.log(error)
-        error_message.value = error.message
+        error_message.value = error.data.message
       } finally {
         loading.value = false
       }
