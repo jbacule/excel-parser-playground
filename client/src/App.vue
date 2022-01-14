@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="code-container">
-      <CodeEditor v-model="code" width="auto" height="600px" font_size="12px" :wrap_code="true" border_radius="5px"></CodeEditor>
+      <prism-editor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prism-editor>
     </div>
 
     <div class="result-container">
@@ -29,20 +29,34 @@
 </template>
 
 <script>
-import CodeEditor from 'simple-code-editor';
 import axios from 'axios';
 import { ref, onMounted } from 'vue'
+
+// import Prism Editor
+import { PrismEditor } from 'vue-prism-editor';
+import 'vue-prism-editor/dist/prismeditor.min.css'; // import the styles somewhere
+
+// import highlighting library (you can use any library you want just return html string)
+import { highlight, languages } from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/themes/prism-tomorrow.css'; // import syntax highlighting styles
+
 export default {
   name: 'App',
   components: {
-    CodeEditor
+    PrismEditor
   },
   setup(){
-    const code = ref('')
-    const result = ref('')
-    const loading = ref(false)
-    const file = ref(null)
-    const error_message = ref('')
+    const code = ref('');
+    const result = ref('');
+    const loading = ref(false);
+    const file = ref(null);
+    const error_message = ref('');
+
+    const highlighter = (code) => {
+        return highlight(code, languages.js);
+    }
 
     const navigate = (href, newTab) => {
       var a = document.createElement('a');
@@ -96,6 +110,7 @@ export default {
       loading,
       code,
       result,
+      highlighter,
       handleFileUpload,
       submit,
       reset,
@@ -139,11 +154,11 @@ body{
 
 .code-container{
   width: auto;
-  height: 600px;
+  height: 500px;
 }
 
 .result-container{
-  margin-top: 10px;
+  margin-top: 20px;
   border-radius: 5px;
   width: auto;
   height: auto;
@@ -158,5 +173,25 @@ body{
   text-align: center;
   margin-top: 15px;
   color: #6c7a89;
+}
+
+/* required class */
+.my-editor {
+  /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
+  background: #2d2d2d;
+  color: #ccc;
+  border-radius: 5px;
+
+  /* you must provide font-family font-size line-height. Example: */
+  font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 5px;
+  width: auto;
+}
+
+/* optional class for removing the outline */
+.prism-editor__textarea:focus {
+  outline: none;
 }
 </style>
