@@ -1,33 +1,26 @@
 {
-  "name": "excel-parser-playground",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "start:server": "nodemon --ignore client/ server.js",
-    "start:client": "npm run serve --prefix client",
-    "start:dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shujo/excel-parser-playground.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shujo/excel-parser-playground/issues"
-  },
-  "homepage": "https://github.com/shujo/excel-parser-playground#readme",
   "devDependencies": {
-    "concurrently": "^7.0.0",
-    "nodemon": "^2.0.15"
+    "@nuxt/devtools": "latest",
+    "@types/formidable": "^3.4.3",
+    "monaco-editor": "^0.43.0",
+    "nuxt": "^3.7.4",
+    "nuxt-monaco-editor": "^1.2.3",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
   },
   "dependencies": {
     "exceljs": "^4.3.0",
-    "express": "^4.17.2",
-    "multer": "^1.4.4"
+    "formidable": "^3.5.1",
+    "h3-formidable": "^1.0.0"
   }
 }
