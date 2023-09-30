@@ -33,11 +33,16 @@ const reset = async () => {
 const loadSample = async () => {
   result.value = '';
   const { data } = await useFetch('/api/load-sample');
-  code.value = data.value?.code
   error_message.value = ''
-  // if(data.value?.file){
-  //   await navigate(data.value?.file, true)
-  // }
+  code.value = data.value?.code
+  
+  if(data.value?.file){
+    const confirmed = await confirm('Sample code will be loaded. Do you want to also download a sample file?')
+    if(confirmed){
+      navigate(data.value?.file, true)
+    }
+    return
+  }
 }
 
 const handleFileUpload = (e: any) => {
@@ -59,22 +64,12 @@ const submit = async () => {
       body: formData
     })
 
-    console.log(response)
-
-  // if(error) {
-  //   error_message.value = error.value?.message || "Unknown Error"
-  //   loading.value = false
-  //   return
-  // }
-
-  if(response){
     result.value = response
+  } catch (error: any) {
+    error_message.value = error.message
+  }finally{
+    loading.value = false
   }
-
-  } catch (error) {
-    console.log(error)
-  }
-  loading.value = false
 }
 
 onMounted(() => {

@@ -8,9 +8,6 @@ dependencies:
   exceljs:
     specifier: ^4.3.0
     version: 4.3.0
-  formidable:
-    specifier: ^3.5.1
-    version: 3.5.1
   h3-formidable:
     specifier: ^1.0.0
     version: 1.0.0(h3@1.8.2)
@@ -19,9 +16,6 @@ devDependencies:
   '@nuxt/devtools':
     specifier: latest
     version: 0.5.5(nuxt@3.7.4)(vite@4.4.9)
-  '@types/formidable':
-    specifier: ^3.4.3
-    version: 3.4.3
   monaco-editor:
     specifier: ^0.43.0
     version: 0.43.0
@@ -1588,12 +1582,6 @@ packages:
 
   /@types/estree@1.0.2:
     resolution: {integrity: sha512-VeiPZ9MMwXjO32/Xu7+OwflfmeoRwkE/qzndw42gGtgJwZopBnzy2gD//NN1+go1mADzkDcqf/KnFRSjTJ8xJA==}
-    dev: true
-
-  /@types/formidable@3.4.3:
-    resolution: {integrity: sha512-FRB5KNIYgCLDvw/ho7daBVqdQRG9Ptk1tMlZ2B5ibAjxDfXFkO6fJaP+ojmS8ljqmnC5If9u24WdWcVPaN3thg==}
-    dependencies:
-      '@types/node': 20.7.2
     dev: true
 
   /@types/http-proxy@1.17.12:

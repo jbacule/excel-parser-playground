@@ -1,4 +1,5 @@
-# Nuxt 3 Minimal Starter
+# Excel Parser Playground
+Made using Nuxt 3 and ExcelJs.
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
