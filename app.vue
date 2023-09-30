@@ -1,4 +1,11 @@
 <script setup lang="ts">
+useHead({
+  title: 'ExcelJs Parser Playground',
+  meta: [
+    { name: 'description', content: 'A parser playground for ExcelJs Nodejs libraray.' }
+  ],
+})
+
 const code = ref<string | undefined>('');
 const result = ref('');
 const loading = ref(false);
@@ -78,7 +85,7 @@ onMounted(() => {
 <template>
   <div class="container">
     <div class="header">
-      <h1>Excel Parser Playground (ExcelJs)</h1>
+      <h1>ExcelJs Parser Playground</h1>
     </div>
     <div class="error-container" v-if="error_message">{{ error_message }}</div>
     <div class="form-container">
