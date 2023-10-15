@@ -9,14 +9,14 @@ export async function GET(request: Request) {
   if (!source) {
     return NextResponse.json({
       success: false,
-      message: "No source parameter given",
+      message: "No source query parameter given",
     });
   }
 
   if (!["default_code", "sample_code"].includes(source)) {
     return NextResponse.json({
       success: false,
-      message: "Invalid source parameter given",
+      message: "Invalid source query parameter given",
     });
   }
 
@@ -27,8 +27,13 @@ export async function GET(request: Request) {
     code = sampleCode.toString();
   }
 
+  const host = request.headers.get("host");
+
   return NextResponse.json({
     success: true,
-    data: code,
+    data:
+      source === "default_code"
+        ? { code }
+        : { code, file: `${host}/sample-file.xlsx` },
   });
 }
