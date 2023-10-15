@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import defaultCode from "@/data/default_code";
-import sampleCode from "@/data/sample_code";
+import { defaultCode, sampleCode } from "@/data/code";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -31,9 +30,6 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     success: true,
-    data:
-      source === "default_code"
-        ? { code }
-        : { code, file: `${host}/sample-file.xlsx` },
+    data: source === "default_code" ? { code } : { code, file: `${host}/sample-file.xlsx` },
   });
 }
